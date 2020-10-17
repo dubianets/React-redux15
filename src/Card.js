@@ -29,4 +29,8 @@ const mapDispatchToProps = (dispatch) => ({
     deleteCard: (cardId) => dispatch({type: 'DELETE_CARD', payload: cardId})
 })
 
+<<<<<<< HEAD
 export default connect(mapStateToProps, mapDispatchToProps) (Card);
+=======
+export default connect(mapStateToProps, mapDispatchToProps) (Card);
+>>>>>>> origin/master

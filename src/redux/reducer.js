@@ -6,6 +6,7 @@ const initialState = {
             status: 'todo',
             priority: 1
         }, {
+<<<<<<< HEAD
             id: Math.random(),
             name: "Petr",
             status: 'done',
@@ -15,16 +16,25 @@ const initialState = {
             name: "Luba",
             status: 'progress',
             priority: 4
+=======
+            id: 1,
+            name: "Petr",
+            status: 'done',
+            priority: 2
+>>>>>>> origin/master
         }
     ],
     columns: [
         {
             status: 'todo'
         }, {
+<<<<<<< HEAD
             status: 'progress'
         }, {
             status: 'review'
         }, {
+=======
+>>>>>>> origin/master
             status: 'done'
         }
     ]
