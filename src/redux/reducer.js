@@ -6,7 +6,7 @@ const initialState = {
             status: 'todo',
             priority: 1
         }, {
-<<<<<<< HEAD
+
             id: Math.random(),
             name: "Petr",
             status: 'done',
@@ -16,28 +16,30 @@ const initialState = {
             name: "Luba",
             status: 'progress',
             priority: 4
-=======
-            id: 1,
+        }, {
+            id: Math.random(),
             name: "Petr",
             status: 'done',
             priority: 2
->>>>>>> origin/master
+
         }
     ],
     columns: [
         {
             status: 'todo'
         }, {
-<<<<<<< HEAD
+
             status: 'progress'
         }, {
             status: 'review'
         }, {
-=======
->>>>>>> origin/master
+
+
             status: 'done'
         }
-    ]
+    ],
+    count: 1
+
 }
 
 const kanban = (state = initialState, action) => {
@@ -46,19 +48,34 @@ const kanban = (state = initialState, action) => {
             return{
                 ...state,
                 cards:[...state.cards,{
-                    _id: Math.random(),
+                    id: Math.random(),
                     name: "Vasyy",
                     status: 'todo',
                     priority: 1
                 }]
             }
         case 'DELETE_CARD':
-            const newCards = state.cards.filter(el => el._id !== action.payload)
+            const newCards = state.cards.filter(el => el.id !== action.payload)
             return{
                 ...state,
                 cards: newCards
             }
-        default:
+        case 'CHANGE_COUNT' :
+            const newCount = state.count + action.payload
+            return {
+                ...state,
+                count: newCount
+            }
+        case 'PRIORITY_CHANGE' :
+            const newPriority = state.cards.map( el =>{
+                if(el.id === action.payload[0]) return {...el, priority: el.priority + action.payload[1]}
+                return el
+            })
+            return {
+                ...state,
+                cards: newPriority
+            }
+         default:
             return state
     }
 

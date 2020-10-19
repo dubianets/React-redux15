@@ -1,5 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import Counts from "./Counts";
+import Priority from "./Priority";
 
 
 function Card(props) {
@@ -10,9 +12,13 @@ function Card(props) {
         <div >
             <button onClick={props.addCard}>add card</button>
             {props.cardsU.map(el => <div key={Math.random()}>
+                <Counts/>
                 <h4>{el.name}</h4>
-                <h4>{el.priority}</h4>
-                <button onClick={() => props.deleteCard(el._id)} >delete</button>
+                <h4>
+                <Priority priorityId={el.id} />
+                </h4>
+                <button onClick={() => props.deleteCard(el.id)} >delete</button>
+            <hr/>
             </div>)}
 
         </div>
@@ -29,8 +35,5 @@ const mapDispatchToProps = (dispatch) => ({
     deleteCard: (cardId) => dispatch({type: 'DELETE_CARD', payload: cardId})
 })
 
-<<<<<<< HEAD
+
 export default connect(mapStateToProps, mapDispatchToProps) (Card);
-=======
-export default connect(mapStateToProps, mapDispatchToProps) (Card);
->>>>>>> origin/master
