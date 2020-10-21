@@ -9,7 +9,7 @@ const initialState = {
 
             id: Math.random(),
             name: "Petr",
-            status: 'done',
+            status: 'review',
             priority: 2
         }, {
             id: Math.random(),
@@ -26,24 +26,27 @@ const initialState = {
     ],
     columns: [
         {
-            status: 'todo'
+            status: 'todo',
+            id: 1
         }, {
-
-            status: 'progress'
+            status: 'progress',
+            id: 2
         }, {
-            status: 'review'
+            status: 'review',
+            id: 3
         }, {
-
-
-            status: 'done'
+            status: 'done',
+            id: 4
         }
-    ],
-    count: 1
+    ]
 
 }
 
 const kanban = (state = initialState, action) => {
     switch(action.type){
+        case 'GET_CARDS' :
+            return{...state,
+                cards:[...state.cards,...action.payload]}
         case 'ADD_CARD':
             return{
                 ...state,
@@ -60,12 +63,6 @@ const kanban = (state = initialState, action) => {
                 ...state,
                 cards: newCards
             }
-        case 'CHANGE_COUNT' :
-            const newCount = state.count + action.payload
-            return {
-                ...state,
-                count: newCount
-            }
         case 'PRIORITY_CHANGE' :
             const newPriority = state.cards.map( el =>{
                 if(el.id === action.payload[0]) return {...el, priority: el.priority + action.payload[1]}
@@ -74,6 +71,18 @@ const kanban = (state = initialState, action) => {
             return {
                 ...state,
                 cards: newPriority
+            }
+        case 'MOVE_RIGHT' :
+            const newList = state.cards.map(el => {
+                if(el.id === action.payload) {
+                    const newEl = state.columns.map(el => el.status)
+                    return {...el, status: newEl[newEl.indexOf(el.status) + 1] }
+                }
+                return el
+            })
+            return {
+                ...state,
+                cards: newList
             }
          default:
             return state
