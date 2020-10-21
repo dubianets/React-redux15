@@ -1,21 +1,19 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import Card from "./Card";
-import Counts from "./Counts";
-
+import Columns from "./Columns";
+import {Container} from "reactstrap";
+import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
 
 
+    return (
+        <Container>
 
-  return (
-    <div >
-    <Card/>
+                <Columns/>
 
-    </div>
-  );
+        </Container>
+    );
 }
 
 
-
-export default  App;
+export default App;

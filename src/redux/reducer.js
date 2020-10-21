@@ -28,19 +28,15 @@ const initialState = {
         {
             status: 'todo'
         }, {
-
             status: 'progress'
         }, {
             status: 'review'
         }, {
-
-
             status: 'done'
         }
     ],
-    count: 1
-
 }
+
 
 const kanban = (state = initialState, action) => {
     switch(action.type){
@@ -49,9 +45,9 @@ const kanban = (state = initialState, action) => {
                 ...state,
                 cards:[...state.cards,{
                     id: Math.random(),
-                    name: "Vasyy",
-                    status: 'todo',
-                    priority: 1
+                    name: action.payload[0],
+                    status: action.payload[1],
+                    priority: action.payload[2]
                 }]
             }
         case 'DELETE_CARD':
@@ -59,12 +55,6 @@ const kanban = (state = initialState, action) => {
             return{
                 ...state,
                 cards: newCards
-            }
-        case 'CHANGE_COUNT' :
-            const newCount = state.count + action.payload
-            return {
-                ...state,
-                count: newCount
             }
         case 'PRIORITY_CHANGE' :
             const newPriority = state.cards.map( el =>{
@@ -75,7 +65,28 @@ const kanban = (state = initialState, action) => {
                 ...state,
                 cards: newPriority
             }
-         default:
+        case 'STATUS_CHANGER' :
+            const newStatus = state.cards.map(el => {
+                if (el.id === action.payload[0]) {
+                    const newChangerStatus = state.columns.map(el => el.status)
+                    return {...el, status: newChangerStatus[newChangerStatus.indexOf(el.status) + action.payload[1]]}
+                }
+                return el
+            })
+            return {
+                ...state,
+                cards: newStatus
+            }
+        case 'EDIT_CHANGER' :
+            const newEdit = state.cards.map(el => {
+                if(el.id === action.payload[0])return {...el, ...action.payload[1]}
+                return el
+            })
+            return {
+                ...state,
+                cards: newEdit
+            }
+        default:
             return state
     }
 
