@@ -38,7 +38,6 @@ const initialState = {
             status: 'done'
         }
     ],
-    count: 1
 
 }
 
