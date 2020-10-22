@@ -10,7 +10,7 @@ const {cards, columns} = props;
 
     return (
         <Row>
-            {columns.map(el => <Column key={Math.random()} column={el} cards={cards}/>
+            {columns.map(el => <Column key={el._id} column={el} cards={cards}/>
             )}
         </Row>
 

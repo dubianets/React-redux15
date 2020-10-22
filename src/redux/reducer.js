@@ -1,23 +1,23 @@
 const initialState = {
     cards: [
         {
-            id:  Math.random(),
+            _id:  Math.random(),
             name: "Vadim",
             status: 'todo',
             priority: 1
         }, {
 
-            id: Math.random(),
+            _id: Math.random(),
             name: "Petr",
             status: 'done',
             priority: 2
         }, {
-            id: Math.random(),
+            _id: Math.random(),
             name: "Luba",
             status: 'progress',
             priority: 4
         }, {
-            id: Math.random(),
+            _id: Math.random(),
             name: "Petr",
             status: 'done',
             priority: 2
@@ -44,6 +44,10 @@ const initialState = {
 
 const kanban = (state = initialState, action) => {
     switch(action.type){
+        case 'GET_CARDS':
+            return {...state,
+            cards:[...action.payload]
+            }
         case 'ADD_CARD':
             return{
                 ...state,

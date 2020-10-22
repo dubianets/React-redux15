@@ -10,9 +10,9 @@ import {cardDeleteById} from "./redux/Actions";
 function CardIteam(props) {
 
 const{card} = props;
-const{name, status, priority, id} = card;
+const{name, status, priority, _id} = card;
 const deleteButtonHandler = () => {
-    props.deleteCard(id)
+    props.deleteCard(_id)
 }
 
     return (
@@ -24,7 +24,7 @@ const deleteButtonHandler = () => {
             </CardBody>
             <CardFooter>
                 <Button onClick={deleteButtonHandler}>delete</Button>
-                <Button onClick={() => props.moveRight(id)}>rT</Button>
+                <Button onClick={() => props.moveRight(_id)}>rT</Button>
             </CardFooter>
         </Card>
     );
