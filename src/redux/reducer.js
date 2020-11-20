@@ -18,9 +18,21 @@ const initialState = {
             priority: 4
         }, {
             _id: Math.random(),
-            name: "Petr",
+            name: "Petr Fe",
             status: 'done',
-            priority: 2
+            priority: 4
+
+        }, {
+            _id: Math.random(),
+            name: "Petr GR",
+            status: 'todo',
+            priority: 5
+
+        }, {
+            _id: Math.random(),
+            name: "Petr TR",
+            status: 'todo',
+            priority: 6
 
         }
     ],
